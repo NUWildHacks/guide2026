@@ -1,0 +1,19 @@
+{
+  "dashboard": {
+    "title": "Dashboard",
+    "type": "page",
+    "href": "https://dashboard.wildhacks.net",
+    "newWindow": true
+  },
+  "index": "Overview",
+  "schedule": "Schedule",
+  "map": "Map",
+  "workshops": "Workshops",
+  "logistics": "Logistics",
+  "project-guidelines": "Project Guidelines",
+  "judging-and-awards": "Judging and Awards",
+  "help-desk": "Help Desk",
+  "judging-guide": {
+    "display": "hidden"
+  }
+}

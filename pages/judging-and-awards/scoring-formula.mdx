@@ -1,0 +1,96 @@
+# The Scoring Formula
+Hello! If you're reading this page, you're interested in understanding the math behind how we adjust raw scores. The summary is, not all judges evaluate equally, and not all projects were created equally. Thus, we want a statistical model to adjust for differences between judges and projects that accomplishes the following two goals:
+1. Normalize for differences between how different judges evaluate.
+2. Normalize for differences between project quality
+
+The rest of this page gets technical and somewhat mathematical. But given this is a hackathon, there are enough people with enough background in data science and math to understand this page.
+
+Again, the model was generated with help from ChatGPT 4o. [For full transparency, the full conversation with ChatGPT 4o can be found at this link](https://chatgpt.com/share/67eb6bab-bc5c-800d-bcd5-83610a10bd7f).
+
+The code used to implement the model uses [DuckDB](https://duckdb.org/) in-process SQL queries.
+
+### Why This is Necessary
+Suppose that across all projects, the global average is 10/15 points per judge, which is approximately where the average sat in previous years.
+
+Suppose that there is one judge that averages consistently 14/15 points -- they are too generous with points. If we rank based on raw score, projects lucky enough to be selected by this judge will be ranked higher than they should fairly be ranked.
+
+If we normalize based on judge average, these possibly very good projects will have their scores be brought down by a judge who was too generous.
+
+We want to account for differences in project quality, somehow. A project that was truly good should not have individual raw scores brought down by judges who were too generous; similarly, it is not fair for projects that were not very good to have scores brought up by judges who were too strict.
+
+## The Model
+Your adjusted score is defined as
+
+$$S - \sum_i w_i j_i + \sum_j m_j p_j $$
+
+1. $S$ is your total score
+2. $w_i$ and $j_i$ are the weights and values of normalization constants for each *judge* that evaluates your project
+3. $m_j$ and $p_j$ are the weights and values of normalization constants of your project score relative to the global average score
+
+The difference between 2 and 3 is simple. For #2, we find the normalization constant from the specific judges you were assigned to. For #3, we do not care which judges evaluated your project: we simply care about how high or low you scored.
+
+## Raw Score
+Each raw score is out of 15 (3 points for each category).
+
+[Learn more about the categories →](/judging-and-awards/project-evaluation)
+
+## Judge Normalization Factor
+Across all projects at the hackathon, there is a global average number of points. Let's call it $\mu$. For each judge, their average across all the projects they evaluate is given by $\mu_j$. The deviation from the average can be denoted as
+
+$$\Delta_j = \mu_j - \mu$$
+
+i.e. the difference from the mean for judge $j$.
+
+Every judge has judged $n_j$ rounds (around 10-15). A judge who has judged more projects is probably more consistent than a judge who has judged fewer. Moreover, by statistical principles, a judge who has judged more projects is more likely to have evaluated a representative subset of projects. Thus, we trust their average score marginally more than other judges.
+
+We define the judge normalization weight as 
+
+$$j_j \equiv \frac{n_j}{\lambda + n_j}$$
+
+where $n_j$ is the *number of projects this judge has evaluated*, and $\lambda$ is a regularization constant. We use $\lambda = 5$ for regularizing judges.
+
+The normalization value is just equal to $\Delta_j$. So the model expands into
+
+$$S - \sum_i \left( \frac{n_i}{\lambda + n_i} \right)\left( \mu_i - \mu \right) + \sum_j m_j p_j $$
+
+
+## Project Normalization Factor
+If we only normalize for differences in judges, we might unfairly shift scores up or down for a project that was actually quite bad or quite good respectively. We therefore also normalize for scores across projects. Again, the global mean is $\mu$. Then, the project deviation is
+
+$$\Delta_p = \mu_p - \mu$$
+
+The weight for the project is computed as
+
+$$\frac{n_p}{n_p + \lambda}$$
+
+where $n_p$ is the *number of judges* who have evaluated this project, and $\lambda$ is a regularization constant. For projects, we will consistently use $\lambda = 20$.
+
+The formula thus expands into
+
+$$S - \sum_i \left( \frac{n_i}{\lambda_1 + n_i} \right)\left( \mu_i - \mu \right) + \sum_j \left( \frac{n_j}{\lambda_2 + n_j} \right) \left( \mu_j - \mu \right) $$
+
+The regularization constants are here subscripted to indicate that they are *not* the same constant.
+
+1. The first sum is across judges. The $n_i$ refer to the sample size of each judge, and $\mu_i$ are averages for each judge.
+2. The second sum is across projects. The $n_j$ refer to the sample size for each project, and $\mu_j$ are averages for each project.
+
+## Revisiting the Formula
+The simplified magic formula is
+
+$$S - \sum_i w_i j_i + \sum_j m_j p_j $$
+
+Why *subtract* for judges, and *add* for projects? Great question.
+
+When the judge deviation is negative, that indicates a harsher judge. We subtract a negative number to add some points to the raw score. Similarly, when the judge deviation is positive, that indicates a more generous judge. We subtract a positive number to remove some points from the raw score.
+
+When project deviation is positive, that indicates that this project is stronger than average. Similarly, when project deviation is negative, that indicates that this project is weaker than average.
+
+When normalizing for differences across judges, we shifted each project slightly closer to the global mean. For equity reasons, we therefore want to shift scores back such that strong projects remain strong and weak projects remain weak.
+
+
+## Implementation
+The source code is available in [this GitHub repository](https://github.com/NUWildHacks/autoscoring-2025). We will use these scripts to rank projects. The SQL queries used to determine the shifts, weights, normalization constants, etc. are all in [`autoscorer/round1_query.py`](https://github.com/NUWildHacks/autoscoring-2025/blob/main/autoscorer/round1_query.py).
+
+You can also look at [`autoscorer/round2_query.py`](https://github.com/NUWildHacks/autoscoring-2025/blob/main/autoscorer/round2_query.py), but that script is far simpler and doesn't need an in-depth explanation.
+
+Some sample data (partially LLM generated) is provided in the root directory. No identifiable data will ever be pushed to this repository.
