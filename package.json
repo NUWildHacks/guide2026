@@ -1,6 +1,8 @@
 {
   "name": "guide.wildhacks.net",
   "version": "1.0.0",
+  "description": "NU WildHacks guide and handbook for participants — 2026 (placeholders, fill details)",
+  "eventYear": 2026,
   "private": true,
   "scripts": {
     "dev": "next dev",

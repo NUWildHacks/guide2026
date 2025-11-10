@@ -20,12 +20,13 @@ export default {
       <span>WildHacks 2025 Guide</span>
     </div>
   ),
-  darkMode: false,
+  darkMode: true,
   nextThemes: {
     defaultTheme: 'light',
+    forcedTheme: undefined,
   },
-  primaryHue: 29.11764705882354,
-  primarySaturation: 50.74626865671641,
+  primaryHue: 264,
+  primarySaturation: 36,
   search: {
     placeholder: 'Search guide...',
   },

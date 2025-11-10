@@ -1,0 +1,24 @@
+{
+  "year": 2026,
+  "eventName": "NU WildHacks",
+  "siteTitle": "NU WildHacks Guide 2026",
+  "dates": {
+    "start": "TBD",
+    "end": "TBD",
+    "schedulePublished": "TBD"
+  },
+  "venue": {
+    "name": "TBD",
+    "address": "TBD"
+  },
+  "contacts": {
+    "organizersEmail": "organizers@wildhacks.net",
+    "helpDeskEmail": "help@wildhacks.net"
+  },
+  "features": {
+    "workshops": true,
+    "judging": true,
+    "meals": true
+  },
+  "notes": "Fill in dates, venue, contact emails, and any feature flags for 2026. This file centralizes year-specific data for templates/components."
+}

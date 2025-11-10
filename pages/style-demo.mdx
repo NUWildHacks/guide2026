@@ -1,0 +1,84 @@
+import { Callout } from 'nextra/components';
+
+# Style Demo & Dark Mode Testing
+
+This page demonstrates all the button styles and interactive elements with the new WildHacks color scheme.
+
+## Theme Colors
+
+Our three main colors:
+- **Primary (Purple):** `#5F459B`
+- **Secondary (Blue):** `#56A0D7`  
+- **Third (Dark Gray):** `#282A2C`
+
+<Callout type="info" emoji="🌙">
+  Click the dark mode toggle in the header (top-right corner) to see the theme switch!
+</Callout>
+
+## Button Styles
+
+### Primary Button
+<button className="button-primary" style={{ marginRight: '10px' }}>
+  Primary Button
+</button>
+
+### Secondary Button
+<button className="button-secondary" style={{ marginRight: '10px' }}>
+  Secondary Button
+</button>
+
+### Outline Button
+<button className="button-outline" style={{ marginRight: '10px' }}>
+  Outline Button
+</button>
+
+## Interactive Elements
+
+### Links
+Here's a [sample link](#) that changes color on hover.
+
+### Inline Code
+This is `inline code` that changes appearance in dark mode.
+
+### Code Blocks
+```javascript
+// Code blocks also adapt to dark mode
+function greet(name) {
+  console.log(`Hello, ${name}!`);
+}
+```
+
+## Callouts in Different Themes
+
+<Callout type="info" emoji="ℹ️">
+  Info callout - adapts to theme
+</Callout>
+
+<Callout type="warning" emoji="⚠️">
+  Warning callout - adapts to theme
+</Callout>
+
+<Callout type="error" emoji="🚫">
+  Error callout - adapts to theme
+</Callout>
+
+## Testing Instructions
+
+1. Toggle between light and dark mode using the button in the header
+2. Observe how all elements smoothly transition
+3. Test hover states on buttons and links
+4. Check scrollbar styling (scroll this page)
+5. Select some text to see custom selection colors
+6. Try keyboard navigation (Tab) to see focus states
+
+## Dark Mode Features
+
+- ✅ Toggle button in header
+- ✅ Smooth transitions between themes
+- ✅ Custom scrollbar colors
+- ✅ Themed button states
+- ✅ Interactive link colors
+- ✅ Code block theming
+- ✅ Custom text selection colors
+- ✅ Accessible focus indicators
+
