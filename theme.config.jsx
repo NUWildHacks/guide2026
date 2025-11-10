@@ -17,7 +17,7 @@ export default {
       }}
     >
       <img src="/wildhacks2025.svg" style={{ height: '32px' }} />
-      <span>WildHacks 2025 Guide</span>
+      <span>WildHacks 2026 Guide</span>
     </div>
   ),
   darkMode: true,
