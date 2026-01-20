@@ -12,7 +12,7 @@
   },
   "dependencies": {
     "katex": "^0.16.21",
-    "next": "14.1.4",
+    "next": "14.2.35",
     "nextra": "^2.13.4",
     "nextra-theme-docs": "^2.13.4",
     "react": "^18",

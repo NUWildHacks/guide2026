@@ -16,7 +16,7 @@ export default {
         fontWeight: '500',
       }}
     >
-      <img src="/wildhacks2025.svg" style={{ height: '32px' }} />
+      <img src="/wildhacks2026.svg" style={{ height: '32px' }} />
       <span>WildHacks 2026 Guide</span>
     </div>
   ),
