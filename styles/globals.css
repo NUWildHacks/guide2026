@@ -17,6 +17,8 @@
   --primary-rgb: 95, 69, 155;
   --secondary-rgb: 86, 160, 215;
   --third-rgb: 40, 42, 44;
+  --error-color: #e25151;
+  --error-rgb: 226, 81, 81;
 
   --foreground-rgb: 40, 42, 44;
   --background-start-rgb: 245, 243, 250;
@@ -299,6 +301,68 @@ pre {
 .dark ::selection {
   background-color: rgba(var(--secondary-rgb), 0.4);
   color: white;
+}
+
+.wh-callout {
+  --callout-accent: var(--primary-color);
+  --callout-accent-rgb: var(--primary-rgb);
+  --callout-bg: rgba(var(--callout-accent-rgb), 0.05);
+  display: flex;
+  gap: 12px;
+  align-items: flex-start;
+  margin: 1rem 0;
+  padding: 16px 18px;
+  border-radius: var(--border-radius);
+  border: 2px solid var(--callout-accent);
+  background-color: var(--callout-bg);
+  box-shadow: none;
+}
+
+.wh-callout-info {
+  --callout-accent: var(--secondary-color);
+  --callout-accent-rgb: var(--secondary-rgb);
+}
+
+.wh-callout-warning {
+  --callout-accent: var(--primary-color);
+  --callout-accent-rgb: var(--primary-rgb);
+}
+
+.wh-callout-error {
+  --callout-accent: var(--error-color);
+  --callout-accent-rgb: var(--error-rgb);
+  border-color: rgba(var(--error-rgb), 0.7);
+  background-color: rgba(var(--error-rgb), 0.08);
+}
+
+.wh-callout-note {
+  --callout-accent: var(--primary-color);
+  --callout-accent-rgb: var(--primary-rgb);
+}
+
+.wh-callout-icon {
+  font-size: 1.1rem;
+  line-height: 1.4;
+}
+
+.wh-callout-content {
+  flex: 1;
+}
+
+.wh-callout-content > :first-child {
+  margin-top: 0;
+}
+
+.wh-callout-content > :last-child {
+  margin-bottom: 0;
+}
+
+.dark .wh-callout {
+  --callout-bg: rgba(var(--callout-accent-rgb), 0.12);
+}
+
+.dark .wh-callout-error {
+  background-color: rgba(var(--error-rgb), 0.16);
 }
 
 .dark {
