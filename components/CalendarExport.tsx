@@ -32,7 +32,7 @@ export default function CalendarExport({ events, calendarName = 'WildHacks 2026'
       margin: '2rem 0',
       padding: '1.5rem',
       border: '2px solid var(--primary-color)',
-      borderRadius: 'var(--border-radius)',
+      borderRadius: 0,
       backgroundColor: 'rgba(var(--primary-rgb), 0.05)'
     }}>
       <h3 style={{ marginBottom: '1rem', fontSize: '1.25rem', fontWeight: '600' }}>
@@ -54,7 +54,7 @@ export default function CalendarExport({ events, calendarName = 'WildHacks 2026'
             border: '2px solid #5f459b',
             padding: '0.5rem 1.5rem',
             fontWeight: '500',
-            borderRadius: '12px',
+            borderRadius: 0,
             cursor: 'pointer',
             transition: 'all 0.2s ease-in-out'
           }}
@@ -86,7 +86,7 @@ export default function CalendarExport({ events, calendarName = 'WildHacks 2026'
             border: '2px solid #56a0d7',
             padding: '0.5rem 1.5rem',
             fontWeight: '500',
-            borderRadius: '12px',
+            borderRadius: 0,
             cursor: 'pointer',
             transition: 'all 0.2s ease-in-out'
           }}
