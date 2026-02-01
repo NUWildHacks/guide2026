@@ -60,7 +60,10 @@
   --background-start-rgb: 40, 42, 44;
   --background-end-rgb: 30, 32, 34;
 
-  --primary-glow: radial-gradient(rgba(95, 69, 155, 0.4), rgba(95, 69, 155, 0));
+  --primary-glow: radial-gradient(
+    rgba(179, 229, 252, 0.4),
+    rgba(179, 229, 252, 0)
+  );
   --secondary-glow: linear-gradient(
     to bottom right,
     rgba(86, 160, 215, 0),
@@ -71,19 +74,19 @@
   --tile-start-rgb: 50, 52, 54;
   --tile-end-rgb: 40, 42, 44;
   --tile-border: conic-gradient(
-    rgba(86, 160, 215, 0.5),
-    rgba(86, 160, 215, 0.25),
-    rgba(95, 69, 155, 0.2),
-    rgba(95, 69, 155, 0.15),
-    rgba(86, 160, 215, 0.1),
-    rgba(86, 160, 215, 0.1),
-    rgba(86, 160, 215, 0.5)
+    rgba(179, 229, 252, 0.5),
+    rgba(179, 229, 252, 0.25),
+    rgba(179, 229, 252, 0.2),
+    rgba(179, 229, 252, 0.15),
+    rgba(179, 229, 252, 0.1),
+    rgba(179, 229, 252, 0.1),
+    rgba(179, 229, 252, 0.5)
   );
 
   --callout-rgb: 50, 52, 54;
-  --callout-border-rgb: 86, 160, 215;
+  --callout-border-rgb: 179, 229, 252;
   --card-rgb: 60, 62, 64;
-  --card-border-rgb: 95, 69, 155;
+  --card-border-rgb: 179, 229, 252;
 }
 
 * {
@@ -211,7 +214,7 @@ a:not(.no-underline) {
 }
 
 a:hover:not(.no-underline) {
-  color: var(--primary-color);
+  color: var(--secondary);
 }
 
 .dark a:hover:not(.no-underline) {
@@ -270,16 +273,16 @@ pre {
 }
 
 ::-webkit-scrollbar-track {
-  background: rgba(var(--primary-rgb), 0.05);
+  background: rgba(179, 229, 252, 0.1);
 }
 
 ::-webkit-scrollbar-thumb {
-  background: rgba(var(--primary-rgb), 0.3);
+  background: rgba(179, 229, 252, 0.5);
   border-radius: 5px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: rgba(var(--primary-rgb), 0.5);
+  background: rgba(179, 229, 252, 0.8);
 }
 
 .dark ::-webkit-scrollbar-track {
@@ -287,11 +290,11 @@ pre {
 }
 
 .dark ::-webkit-scrollbar-thumb {
-  background: rgba(var(--secondary-rgb), 0.4);
+  background: rgba(179, 229, 252, 0.6);
 }
 
 .dark ::-webkit-scrollbar-thumb:hover {
-  background: rgba(var(--secondary-rgb), 0.6);
+  background: rgba(179, 229, 252, 0.8);
 }
 
 /* Selection */
@@ -332,8 +335,8 @@ pre {
 }
 
 .wh-callout-warning {
-  --callout-accent: var(--primary-color);
-  --callout-accent-rgb: var(--primary-rgb);
+  --callout-accent: var(--secondary-color);
+  --callout-accent-rgb: var(--secondary-rgb);
 }
 
 .wh-callout-error {
