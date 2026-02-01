@@ -1,4 +1,5 @@
-import { Callout } from '@/components/Callout'
+import { Callout } from '@/components/Callout';
+import logistics from '@/data/logistics.json';
 
 # Meals, Snacks, and Drinks
 
@@ -6,22 +7,40 @@ A hackathon is all about development. We want you to focus on that, so we'll pro
 
 ## Meal Distribution
 
-Meals will be distributed at the times and locations listed on the [schedule](/schedule). Meals will generally be distributed on 1st Floor Mudd.
+<p>
+  {logistics.meals.intro} <a href={logistics.meals.scheduleLink}>schedule</a>.
+  Meals will generally be distributed on {logistics.meals.location}.
+</p>
 
-You can view our [meal options](/logistics/meal-options) to see what we have at each meal throughout the event.
+<p>
+  You can view our{' '}
+  <a href={logistics.meals.optionsLink}>{logistics.meals.optionsText}</a> to see
+  what we have at each meal throughout the event.
+</p>
 
-<Callout type="warning" emoji="⚠️">
-  **You must have your [WildHacker Code](https://dashboard.wildhacks.net/code) ready and have submitted a project on Dev Post to receive meals. You can edit your project after submission 😊**
+<Callout
+  type={logistics.meals.callout.type}
+  emoji={logistics.meals.callout.emoji}
+>
+  <strong>
+    You must have your{' '}
+    <a href={logistics.meals.wildhackerLink}>WildHacker Code</a> ready and have
+    submitted a project on Dev Post to receive meals. You can edit your project
+    after submission.
+  </strong>
 </Callout>
 
 ## Snacks and Drinks
 
-Snacks and drinks will be available throughout the event. They will be located at the [WildSnacks Station](/map).
+<p>
+  {logistics.snacks.intro}{' '}
+  <a href={logistics.snacks.mapLink}>WildSnacks Station</a>.
+</p>
 
-<Callout emoji="❤️">
-    Thank you to the Red Bull team for providing our WildHackers with wiiings to complete their applications!
+<Callout emoji={logistics.snacks.callout.emoji}>
+  {logistics.snacks.callout.text}
 </Callout>
 
 ## Additional Food and Drinks
 
-If you want different food or drinks than what we have available, there are vending machines located throughout the buildings. You can also order or pick up food from local restaurants. Note that all additional food and drink options must be purchased.
+<p>{logistics.additional.intro}</p>
